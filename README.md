@@ -24,4 +24,9 @@ pip install -e .
 cd feature_repo && feast apply
 ```
 
-This should 
+In the happy path, this should produce the following output:
+```bash
+Registered entity driver_id
+Registered feature view driver_hourly_stats
+Deploying infrastructure for driver_hourly_stats
+```
