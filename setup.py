@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-NAME = "feast-custom-stores-demo"
+NAME = "feast-custom-online-store-demo"
 DESCRIPTION = "Python SDK for Feast"
 URL = "https://github.com/feast-dev/feast"
 AUTHOR = "Feast"
