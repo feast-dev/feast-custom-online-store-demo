@@ -1,0 +1,5 @@
+project: test_custom
+registry: data/registry.db
+provider: local
+online_store:
+    type: custom.online.mysql.MySQLOnlineStore
