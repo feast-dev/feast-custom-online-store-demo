@@ -1,6 +1,6 @@
 # feast-custom-stores-demo
 
-This is an example repo which implements a custom online store for Feast, and then uses it in a feature repo.
+This is an example repo which implements a custom online store for Feast.
 
 ## Installation
 
