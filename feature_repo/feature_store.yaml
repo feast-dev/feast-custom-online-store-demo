@@ -1,4 +1,4 @@
 project: test_custom
 registry: data/registry.db
 provider: local
-online_store: custom.online.mysql.MySQLOnlineStore
+online_store: feast_custom_online_store.mysql.MySQLOnlineStore

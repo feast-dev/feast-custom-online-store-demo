@@ -117,7 +117,6 @@ class MySQLOnlineStore(OnlineStore):
         project = config.project
         for entity_key in entity_keys:
             entity_key_bin = serialize_entity_key(entity_key).hex()
-            print(f"entity_key_bin: {entity_key_bin}")
 
             cur.execute(
                 f"SELECT feature_name, value, event_ts FROM {_table_id(project, table)} WHERE entity_key = %s",
@@ -157,7 +156,7 @@ class MySQLOnlineStore(OnlineStore):
                 f"CREATE TABLE IF NOT EXISTS {_table_id(project, table)} (entity_key VARCHAR(512), feature_name VARCHAR(256), value BLOB, event_ts timestamp, created_ts timestamp,  PRIMARY KEY(entity_key, feature_name))"
             )
             cur.execute(
-                f"CREATE INDEX {_table_id(project, table)}_ek ON {_table_id(project, table)} (entity_key);"
+                f"ALTER TABLE {_table_id(project, table)} ADD INDEX {_table_id(project, table)}_ek (entity_key);"
             )
 
         for table in tables_to_delete:
