@@ -24,9 +24,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Set up MySQL
-        if: {{matrix.os == "ubuntu-latest"}}
-        run: |
-          sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+        uses: ankane/setup-mysql@v1
       - name: Run tests
         run: pytest test_custom_online_store.py
