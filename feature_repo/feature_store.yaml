@@ -3,4 +3,3 @@ registry: data/registry.db
 provider: local
 online_store:
   type: feast_custom_online_store.mysql.MySQLOnlineStore
-  password: root
