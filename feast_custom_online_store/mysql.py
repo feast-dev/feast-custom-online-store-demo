@@ -17,7 +17,8 @@ from pydantic.typing import Literal
 
 class MySQLOnlineStoreConfig(FeastConfigBaseModel):
     type: Literal["mysql",
-                  "feast_custom_online_store.mysql.MySQLOnlineStore"] = "feast_custom_online_store.mysql.MySQLOnlineStore"
+                  "feast_custom_online_store.mysql.MySQLOnlineStore"] \
+        = "feast_custom_online_store.mysql.MySQLOnlineStore"
 
     host: Optional[StrictStr] = None
     user: Optional[StrictStr] = None

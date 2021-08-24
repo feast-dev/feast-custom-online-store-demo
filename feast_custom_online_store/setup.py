@@ -6,6 +6,7 @@ REQUIRES_PYTHON = ">=3.7.0"
 setup(
     name="feast_custom_stores_demo",
     description=open("README.md").read(),
+    version="0.0.1",
     long_description_content_type="text/markdown",
     python_requires=REQUIRES_PYTHON,
     install_requires=[
