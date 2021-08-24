@@ -1,4 +1,5 @@
 import os
+import re
 from datetime import datetime
 
 from feast import FeatureStore
@@ -24,3 +25,24 @@ def test_end_to_end():
 
     # tear down feature store
     fs.teardown()
+
+
+def test_cli():
+    os.system(
+        "PYTHONPATH=$PYTHONPATH:/$(pwd) feast -c feature_repo apply"
+    )
+    os.system(
+        "PYTHONPATH=$PYTHONPATH:/$(pwd) feast -c feature_repo materialize-incremental 2021-08-19T22:29:28 > output"
+    )
+    with open("output", "r") as f:
+        output = f.read()
+
+    try:
+        if "feast_custom_online_store.mysql.MySQLOnlineStore" not in output:
+            raise Exception(
+                f'Failed to successfully use online store from CLI. Output:\n\n {output}'
+            )
+    finally:
+        os.system(
+            "PYTHONPATH=$PYTHONPATH:/$(pwd) feast -c feature_repo teardown"
+        )

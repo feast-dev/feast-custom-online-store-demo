@@ -1,5 +1,5 @@
 # Feast Custom Online Store
-[![test-provider](https://github.com/feast-dev/feast-custom-online-store-demo/actions/workflows/test_custom_online_store.yml/badge.svg?branch=main)](https://github.com/feast-dev/feast-custom-online-store-demo/actions/workflows/test_custom_online_store.yml)
+[![test_custom_online_store](https://github.com/feast-dev/feast-custom-online-store-demo/actions/workflows/test_custom_online_store.yml/badge.svg?branch=main)](https://github.com/feast-dev/feast-custom-online-store-demo/actions/workflows/test_custom_online_store.yml)
 
 ### Overview
 
