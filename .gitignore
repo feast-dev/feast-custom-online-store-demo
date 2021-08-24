@@ -1,5 +1,6 @@
 # Registry
 feature_repo/data/registry.db
+output
 
 ### IntelliJ IDEA ###
 .idea
