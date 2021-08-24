@@ -11,11 +11,16 @@ from feast.protos.feast.types.Value_pb2 import Value as ValueProto
 
 import mysql.connector
 from feast.repo_config import FeastConfigBaseModel
+from mysql.connector.abstracts import MySQLConnectionAbstract
 from pydantic import StrictStr
 from pydantic.typing import Literal
 
 
 class MySQLOnlineStoreConfig(FeastConfigBaseModel):
+    """
+    Configuration for the MySQL online store.
+    NOTE: The class *must* end with the `OnlineStoreConfig` suffix.
+    """
     type: Literal["mysql",
                   "feast_custom_online_store.mysql.MySQLOnlineStore"] \
         = "feast_custom_online_store.mysql.MySQLOnlineStore"
@@ -27,9 +32,12 @@ class MySQLOnlineStoreConfig(FeastConfigBaseModel):
 
 
 class MySQLOnlineStore(OnlineStore):
+    """
+    An online store implementation that uses MySQL.
+    NOTE: The class *must* end with the `OnlineStore` suffix.
+    """
 
-    _conn = None
-    _cur = None
+    _conn: MySQLConnectionAbstract = None
 
     def _get_conn(self, config: RepoConfig):
 
@@ -153,6 +161,7 @@ class MySQLOnlineStore(OnlineStore):
 
         project = config.project
 
+        # We don't create any special state for the entites in this implementation.
         for table in tables_to_keep:
             cur.execute(
                 f"CREATE TABLE IF NOT EXISTS {_table_id(project, table)} (entity_key VARCHAR(512), feature_name VARCHAR(256), value BLOB, event_ts timestamp, created_ts timestamp,  PRIMARY KEY(entity_key, feature_name))"

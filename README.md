@@ -8,7 +8,7 @@ data store to store features for low-latency retrieval, typically needed during 
 
 ### Why create a custom online store?
 
-Feast materializes data to online stores for low-latency lookup at model inference time. Typically, key-value stores are used 
+Feast materializes data to online stores for low-latency lookup at model inference time. Typically, key-value stores are used for 
 the online stores, however relational databases can be used for this purpose as well.
 
 Feast comes with some online stores built in, e.g, Sqlite, Redis, DynamoDB and Datastore. However, users can develop their
