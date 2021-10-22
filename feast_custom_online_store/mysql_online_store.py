@@ -9,7 +9,7 @@ from feast.protos.feast.types.EntityKey_pb2 import EntityKey as EntityKeyProto
 from feast.protos.feast.types.Value_pb2 import Value as ValueProto
 
 
-import mysql.connector
+from mysql import connector
 from feast.repo_config import FeastConfigBaseModel
 from mysql.connector.abstracts import MySQLConnectionAbstract
 from pydantic import StrictStr
@@ -22,8 +22,8 @@ class MySQLOnlineStoreConfig(FeastConfigBaseModel):
     NOTE: The class *must* end with the `OnlineStoreConfig` suffix.
     """
     type: Literal["mysql",
-                  "feast_custom_online_store.mysql.MySQLOnlineStore"] \
-        = "feast_custom_online_store.mysql.MySQLOnlineStore"
+                  "feast_custom_online_store.mysql_online_store.MySQLOnlineStore"] \
+        = "feast_custom_online_store.mysql_online_store.MySQLOnlineStore"
 
     host: Optional[StrictStr] = None
     user: Optional[StrictStr] = None
@@ -45,7 +45,7 @@ class MySQLOnlineStore(OnlineStore):
         assert isinstance(online_store_config, MySQLOnlineStoreConfig)
 
         if not self._conn:
-            self._conn = mysql.connector.connect(
+            self._conn = connector.connect(
                 host=online_store_config.host or "127.0.0.1",
                 user=online_store_config.user or "root",
                 password=online_store_config.password,
