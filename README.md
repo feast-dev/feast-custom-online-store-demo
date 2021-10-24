@@ -79,7 +79,7 @@ make test-python-universal
 
 If the command is run immediately, the tests should fail. The tests are parametrized based on the `FULL_REPO_CONFIGS` variable defined in `sdk/python/tests/integration/feature_repos/repo_configuration.py`. To overwrite these configurations, you can simply create your own file that contains a `FULL_REPO_CONFIGS`, and point Feast to that file by setting the environment variable `FULL_REPO_CONFIGS_MODULE` to point to that file. In this repo, the file that overwrites `FULL_REPO_CONFIGS` is `feast_custom_online_store/feast_tests.py`, so you would run
 ```
-export FULL_REPO_CONFIGS_MODULE='feast_custom_online_store.feast_tests.py`
+export FULL_REPO_CONFIGS_MODULE='feast_custom_online_store.feast_tests'
 make test-python-universal
 ```
 to test the MySQL online store against the Feast universal tests. You should notice that some of the tests actually fail; this indicates that there is a mistake in the implementation of this online store!
