@@ -38,7 +38,7 @@ def test_cli():
         output = f.read()
 
     try:
-        if "feast_custom_online_store.mysql.MySQLOnlineStore" not in output:
+        if "feast_custom_online_store.mysql_online_store.MySQLOnlineStore" not in output:
             raise Exception(
                 f'Failed to successfully use online store from CLI. Output:\n\n {output}'
             )

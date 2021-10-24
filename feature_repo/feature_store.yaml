@@ -2,4 +2,4 @@ project: test_custom
 registry: data/registry.db
 provider: local
 online_store:
-  type: feast_custom_online_store.mysql.MySQLOnlineStore
+  type: feast_custom_online_store.mysql_online_store.MySQLOnlineStore
