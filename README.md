@@ -52,3 +52,31 @@ $ PYTHONPATH=$PYTHONPATH:/$(pwd) feast -c feature_repo materialize-incremental 2
 driver_hourly_stats from 2020-08-24 05:23:49-07:00 to 2021-08-19 15:29:28-07:00:
 100%|████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 120.59it/s]
 ```
+
+### Testing against the Feast test suite
+
+A subset of the Feast test suite, called "universal tests", are designed to test the core behavior of offline and online stores. A custom online store implementation can use the universal tests as follows.
+
+First, note that this repository contains Feast as a submodule. To fetch and populate the directory, run
+```
+git submodule update --init --recursive
+```
+
+Next, confirm that the Feast unit tests run as expected:
+```
+cd feast
+make test
+```
+
+The Feast universal tests can be run with the command
+```
+make test-python-universal
+```
+
+If you run it immediately, the tests should fail. The tests are parametrized based on the `FULL_REPO_CONFIGS` variable defined in `sdk/python/tests/integration/feature_repos/repo_configuration.py`. To overwrite these configurations, you can simply create your own file
+that contains a `FULL_REPO_CONFIGS`, and point Feast to that file by setting the environment variable `FULL_REPO_CONFIGS_MODULE` to point to that file. In this repo, the file that overwrites `FULL_REPO_CONFIGS` is `feast_custom_online_store/feast_tests.py`, so you would run
+```
+export FULL_REPO_CONFIGS_MODULE='feast_custom_online_store.feast_tests.py`
+make test-python-universal
+```
+to test the MySQL online store against the Feast universal tests.
